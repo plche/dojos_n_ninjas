@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dojos and Ninjas</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body>
+        <main class="container-fluid">
+            <div class="container-fluid row">
+                <div class="container col-3 mt-5">
+                    <form class="rounded text-white bg-dark p-4" action="/dojo/add" method="post">
+                        <h1 class="text-primary text-center">New Dojo</h1>
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" name="name">
+                        <button type="submit" class="btn btn-outline-primary mt-3">Add Dojo</button>
+                        <div class="error">
+                            {% with messages = get_flashed_messages(category_filter = ["adddojonew"]) %}
+                                {% for message in messages: %}
+                                    <p>{{message}}</p>
+                                {% endfor %}
+                            {% endwith %}
+                        </div>
+                    </form>
+                </div>
+                <div class="container col-3 mt-5 rounded bg-dark p-4">
+                    <h1 class="text-primary text-center">All Dojos</h1>
+                    {% for dojo in dojos: %}
+                        <div class="container text-center">
+                            <a class="btn btn-outline-warning border-0" href="/dojo/{{dojo.id}}">{{dojo.name}}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container-fluid row">
+                <form action="/ninjas" method="get">
+                    <button type="submit" class="btn btn-outline-primary m-5">Add Ninja</button>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
