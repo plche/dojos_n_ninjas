@@ -21,6 +21,3 @@ def handleNinjas():
         else:
             flash("There was a problem registering the new ninja, please try again", "addninjanew")
             return redirect('/ninjas')
-
-# @app.route('/ninja/add', methods=["GET", "POST"])
-# def 
